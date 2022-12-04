@@ -59,55 +59,94 @@ public class CoffeeMachine {
 
         Scanner scanner = new Scanner(System.in);
         CoffeeMachine coffeeMachine = new CoffeeMachine();
+        boolean isExit = false;
 
-        printInfo(coffeeMachine);
+        while (!isExit) {
+            System.out.println("Write action (buy, fill, take, remaining, exit):");
+            String action = scanner.nextLine();
 
-        System.out.println("Write action (buy, fill, take):");
-        String action = scanner.nextLine();
-
-        switch (action) {
-            case "buy" -> buy(coffeeMachine);
-            case "fill" -> fill(coffeeMachine);
-            case "take" -> {
-                System.out.printf("I gave you $%d\n\n", coffeeMachine.getMoney());
-                coffeeMachine.takeMoney(0, "take");
+            switch (action) {
+                case "buy" -> buy(coffeeMachine);
+                case "fill" -> fill(coffeeMachine);
+                case "take" -> {
+                    System.out.printf("I gave you $%d\n\n", coffeeMachine.getMoney());
+                    coffeeMachine.takeMoney(0, "take");
+                }
+                case "remaining" -> printInfo(coffeeMachine);
+                case "exit" -> isExit = true;
             }
         }
-
-        printInfo(coffeeMachine);
     }
 
     public static void buy(CoffeeMachine coffeeMachine) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\nWhat do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:");
+        System.out.println("\nWhat do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:");
 
-        int typeOfCoffee = scanner.nextInt();
-        System.out.println();
+        String typeOfCoffee = scanner.nextLine();
 
         switch (typeOfCoffee) {
-            case 1 -> {
+            case "1" -> {
                 Espresso espresso = new Espresso();
-                coffeeMachine.setWater(espresso.getWATER(), "buy");
-                coffeeMachine.setMilk(espresso.getMILK(), "buy");
-                coffeeMachine.setCoffeeBeans(espresso.getCOFFEE_BEANS(), "buy");
-                coffeeMachine.setDisposableCups(0, "buy");
-                coffeeMachine.takeMoney(espresso.getCOST(), "add");
+
+                if (coffeeMachine.getWater() < espresso.getWATER()) {
+                    System.out.println("Sorry, not enough water!\n");
+                }
+                else if (coffeeMachine.getMilk() < espresso.getMILK()){
+                    System.out.println("Sorry, not enough milk!\n");
+                } else if (coffeeMachine.getCoffeeBeans() < espresso.getCOFFEE_BEANS()) {
+                    System.out.println("Sorry, not enough coffee!\n");
+                } else if (coffeeMachine.getDisposableCups() < 1) {
+                    System.out.println("Sorry, not enough cups!\n");
+                } else {
+                    coffeeMachine.setWater(espresso.getWATER(), "buy");
+                    coffeeMachine.setMilk(espresso.getMILK(), "buy");
+                    coffeeMachine.setCoffeeBeans(espresso.getCOFFEE_BEANS(), "buy");
+                    coffeeMachine.setDisposableCups(0, "buy");
+                    coffeeMachine.takeMoney(espresso.getCOST(), "add");
+                    System.out.println("I have enough resources, making you a coffee!\n");
+                }
             }
-            case 2 -> {
+            case "2" -> {
                 Latte latte = new Latte();
-                coffeeMachine.setWater(latte.getWATER(), "buy");
-                coffeeMachine.setMilk(latte.getMILK(), "buy");
-                coffeeMachine.setCoffeeBeans(latte.getCOFFEE_BEANS(), "buy");
-                coffeeMachine.setDisposableCups(0, "buy");
-                coffeeMachine.takeMoney(latte.getCOST(), "add");
+
+                if (coffeeMachine.getWater() < latte.getWATER()) {
+                    System.out.println("Sorry, not enough water!\n");
+                }
+                else if (coffeeMachine.getMilk() < latte.getMILK()){
+                    System.out.println("Sorry, not enough milk!\n");
+                } else if (coffeeMachine.getCoffeeBeans() < latte.getCOFFEE_BEANS()) {
+                    System.out.println("Sorry, not enough coffee!\n");
+                } else if (coffeeMachine.getDisposableCups() < 1) {
+                    System.out.println("Sorry, not enough cups!\n");
+                } else {
+                    coffeeMachine.setWater(latte.getWATER(), "buy");
+                    coffeeMachine.setMilk(latte.getMILK(), "buy");
+                    coffeeMachine.setCoffeeBeans(latte.getCOFFEE_BEANS(), "buy");
+                    coffeeMachine.setDisposableCups(0, "buy");
+                    coffeeMachine.takeMoney(latte.getCOST(), "add");
+                    System.out.println("I have enough resources, making you a coffee!\n");
+                }
             }
-            case 3 -> {
+            case "3" -> {
                 Cappuccino cappuccino = new Cappuccino();
-                coffeeMachine.setWater(cappuccino.getWATER(), "buy");
-                coffeeMachine.setMilk(cappuccino.getMILK(), "buy");
-                coffeeMachine.setCoffeeBeans(cappuccino.getCOFFEE_BEANS(), "buy");
-                coffeeMachine.setDisposableCups(0, "buy");
-                coffeeMachine.takeMoney(cappuccino.getCOST(), "add");
+
+                if (coffeeMachine.getWater() < cappuccino.getWATER()) {
+                    System.out.println("Sorry, not enough water!\n");
+                }
+                else if (coffeeMachine.getMilk() < cappuccino.getMILK()){
+                    System.out.println("Sorry, not enough milk!\n");
+                } else if (coffeeMachine.getCoffeeBeans() < cappuccino.getCOFFEE_BEANS()) {
+                    System.out.println("Sorry, not enough coffee!\n");
+                } else if (coffeeMachine.getDisposableCups() < 1) {
+                    System.out.println("Sorry, not enough cups!\n");
+                } else {
+                    coffeeMachine.setWater(cappuccino.getWATER(), "buy");
+                    coffeeMachine.setMilk(cappuccino.getMILK(), "buy");
+                    coffeeMachine.setCoffeeBeans(cappuccino.getCOFFEE_BEANS(), "buy");
+                    coffeeMachine.setDisposableCups(0, "buy");
+                    coffeeMachine.takeMoney(cappuccino.getCOST(), "add");
+                    System.out.println("I have enough resources, making you a coffee!\n");
+                }
             }
         }
     }
@@ -130,6 +169,7 @@ public class CoffeeMachine {
     }
 
     public static void printInfo(CoffeeMachine coffeeMachine) {
+        System.out.println();
         System.out.println("The coffee machine has:");
         System.out.printf("%d ml of water\n", coffeeMachine.getWater());
         System.out.printf("%d ml of milk\n", coffeeMachine.getMilk());
