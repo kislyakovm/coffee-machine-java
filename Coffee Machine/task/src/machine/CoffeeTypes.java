@@ -1,58 +1,32 @@
 package machine;
 
-class Espresso {
+class Coffee {
 
-    protected int getWATER() {
-        return 250;
+    int water;
+    int milk;
+    int coffeeBeans;
+    int cost;
+
+    public Coffee(int water, int milk, int coffeeBeans, int cost) {
+        this.water = water;
+        this.milk = milk;
+        this.coffeeBeans = coffeeBeans;
+        this.cost = cost;
     }
 
-    protected int getMILK() {
-        return 0;
+    protected int getWater() {
+        return water;
     }
 
-    protected int getCOFFEE_BEANS() {
-        return 16;
+    protected int getMilk() {
+        return milk;
     }
 
-    protected int getCOST() {
-        return 4;
-    }
-}
-
-class Latte {
-
-    protected int getWATER() {
-        return 350;
+    protected int getCoffeeBeans() {
+        return coffeeBeans;
     }
 
-    protected int getMILK() {
-        return 75;
-    }
-
-    protected int getCOFFEE_BEANS() {
-        return 20;
-    }
-
-    protected int getCOST() {
-        return 7;
-    }
-}
-
-class Cappuccino {
-
-    protected int getWATER() {
-        return 200;
-    }
-
-    protected int getMILK() {
-        return 100;
-    }
-
-    protected int getCOFFEE_BEANS() {
-        return 12;
-    }
-
-    protected int getCOST() {
-        return 6;
+    protected int getCost() {
+        return cost;
     }
 }
